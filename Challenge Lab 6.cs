@@ -96,6 +96,41 @@ public class Program
         Console.WriteLine();
     }
 
+    /// <summary> 
+    /// Rotates the given n x m matrix by 90 degrees clockwise in place. 
+    /// See https://www.geeksforgeeks.org/dsa/turn-an-image-by-90-degree/# 
+    /// </summary>
+    /// <param name="matrix">The n x m matrix to rotate.</param>
+    public static void RotateMatrixGeeksWay(List<List<int>> mat)
+    {
+        int n = mat.Count;      // Number of rows in the original matrix
+        int m = mat[0].Count;   // Number of columns in the original matrix
+
+        // Create a new matrix with dimensions swapped (m x n)
+        List<List<int>> newMat = new List<List<int>>();
+        for (int i = 0; i < m; i++)
+        {
+            newMat.Add(new List<int>());
+            for (int j = 0; j < n; j++)
+            {
+                newMat[i].Add(0);
+            }
+        }
+
+        // Fill the new matrix with rotated values
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                newMat[j][n - i - 1] = mat[i][j];
+            }
+        }
+
+        // Replace the original matrix with the rotated matrix
+        mat.Clear();
+        mat.AddRange(newMat);
+    }
+
     /// <summary> Rotates the given n x n matrix by 90 degrees clockwise in place.</summary>
     /// <param name="matrix">The n x n matrix to rotate.</param>
     public static void RotateMatrix(int[,] matrix)
